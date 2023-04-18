@@ -32,12 +32,12 @@
                                 <div class="card-inner">
                                     <div class="user-card user-card-s2">
                                         <div class="user-avatar lg bg-primary">
-                                            <img src="./images/avatar/b-sm.jpg" alt="">
+                                            <img src="{{user.get_photo_url}}" alt="profile_photo">
                                         </div>
                                         <div class="user-info">
                                             <div class="badge bg-light rounded-pill ucap">Platinam</div>
-                                            <h5>Francis Mitcham</h5>
-                                            <span class="sub-text">info@softnio.com</span>
+                                            <h5>{{user.get_full_name}}</h5>
+                                            <span class="sub-text">{{user.email}}</span>
                                         </div>
                                     </div>
                                 </div>

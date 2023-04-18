@@ -71,7 +71,7 @@
                             <a href="html/ecommerce/customer-details.html">
                                 <div class="user-card">
                                     <div class="user-avatar bg-primary">
-                                        <img src="{{customer.get_photo_url}}" alt="photo_profile">
+                                        <img src="{{customer.user.get_photo_url}}" alt="photo_profile">
                                     </div>
                                     <div class="user-info">
                                         <span class="tb-lead">{{customer.user.get_full_name}}<span
@@ -105,6 +105,7 @@
                                 <li>
                                     <div class="drodown">
                                         <a href="{% url 'administration:customer-detail' customer.id %}"
+                                        target="blank"
                                             class="dropdown-toggle btn btn-icon btn-trigger">
                                             <em class="icon ni ni-plus"></em>
                                         </a>

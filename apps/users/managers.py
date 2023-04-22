@@ -29,4 +29,10 @@ class UserManager(BaseUserManager):
         user.is_superuser = True
         user.is_staff = True
         user.save(using=self._db)
+        # send email to user
+        user.email_user(
+            subject="Welcome to Django",
+            message="Welcome to Django, you are now a superuser",
+            from_email="hola@banquetes.website",
+        )
         return user

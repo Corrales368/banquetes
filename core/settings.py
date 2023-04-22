@@ -56,6 +56,7 @@ LOCAL_APPS = [
 
 THIRD_APPS = [
     'rest_framework',
+    'anymail',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_APPS
@@ -153,6 +154,15 @@ MEDIA_ROOT = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+
+EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
+ANYMAIL_SENDINBLUE_API_KEY = env('ANYMAIL_SENDINBLUE_API_KEY')
+ANYMAIL = {
+    "SENDINBLUE_API_KEY": env('ANYMAIL_SENDINBLUE_API_KEY'),
+    
+}
+SENDINBLUE_API_KEY = env('ANYMAIL_SENDINBLUE_API_KEY')
+
 
 if not DEBUG:
     # Database

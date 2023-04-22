@@ -52,6 +52,7 @@ LOCAL_APPS = [
     'apps.customers',
     'apps.providers',
     'apps.shared',
+    'apps.banquets',
 ]
 
 THIRD_APPS = [

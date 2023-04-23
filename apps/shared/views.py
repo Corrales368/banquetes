@@ -3,12 +3,10 @@ from django.template import RequestContext
 
 
 def handler404(request, *args, **argv):
-    response = render('404.html', {}, context_instance=RequestContext(request))
-    response.status_code = 404
+    response = render(request, 'shared/error/404.html')
     return response
 
 
 def handler500(request, *args, **argv):
-    response = render('500.html', {}, context_instance=RequestContext(request))
-    response.status_code = 500
+    response = render(request, 'shared/error/500.html')
     return response

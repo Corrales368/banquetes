@@ -13,18 +13,6 @@ class Banquet(models.Model):
 
     def __str__(self):
         return self.name
-    
-    
-class Room(models.Model):
-    name = models.CharField(max_length=255)
-    capacity = models.IntegerField()
-    description = models.TextField()
-    is_available = models.BooleanField(default=True)
-    image = models.ImageField(upload_to='rooms')
-    banquet = models.ForeignKey(Banquet, on_delete=models.CASCADE, related_name='rooms')
-
-    def __str__(self):
-        return self.name
 
 
 class Food(models.Model):
@@ -66,20 +54,20 @@ class Plan(models.Model):
     def __str__(self):
         return self.name
     
-    @property
-    def get_total_price(self):
-        total_price = self.price
-        for food in self.food_choices.all():
-            total_price += food.price * self.banquet.numer_of_guests
-        for decoration in self.decoration_choices.all():
-            total_price += decoration.price * self.banquet.numer_of_guests
-        for entertainment in self.entertainment_choices.all():
-            total_price += entertainment.price * self.banquet.numer_of_guests
-        return total_price
+    # @property
+    # def get_total_price(self):
+    #     total_price = self.price
+    #     for food in self.food_choices.all():
+    #         total_price += food.price * self.banquet.numer_of_guests
+    #     for decoration in self.decoration_choices.all():
+    #         total_price += decoration.price * self.banquet.numer_of_guests
+    #     for entertainment in self.entertainment_choices.all():
+    #         total_price += entertainment.price * self.banquet.numer_of_guests
+    #     return total_price
 
-    def save(self, *args, **kwargs):
-        print(self.get_total_price)
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     print(self.get_total_price)
+    #     super().save(*args, **kwargs)
     
 
 class Booking(models.Model):

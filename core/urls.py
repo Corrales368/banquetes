@@ -24,3 +24,8 @@ urlpatterns = [
     path('', include('apps.home.urls')),
     path('', include('apps.administration.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+# create custom urls for 404 and 500 errors
+handler404 = 'apps.shared.views.handler404'
+handler500 = 'apps.shared.views.handler500'

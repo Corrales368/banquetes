@@ -10,9 +10,7 @@ class UserManager(BaseUserManager):
         if not email:
             raise ValueError("Users must have an email address")
 
-        user = self.model(
-            email=self.normalize_email(email)
-        )
+        user = self.model(email=self.normalize_email(email))
 
         user.set_password(password)
         user.save(using=self._db)
@@ -22,17 +20,17 @@ class UserManager(BaseUserManager):
         """
         Creates and saves a superuser with the given email, and password.
         """
-        user = self.create_user(
-            email,
-            password=password
-        )
+        user = self.create_user(email, password=password)
         user.is_superuser = True
         user.is_staff = True
         user.save(using=self._db)
         # send email to user
-        user.email_user(
-            subject="Welcome to Django",
-            message="Welcome to Django, you are now a superuser",
-            from_email="hola@banquetes.website",
-        )
+        try:
+            user.email_user(
+                subject="Welcome to Django",
+                message="Welcome to Django, you are now a superuser",
+                from_email="hola@banquetes.website",
+            )
+        except Exception as e:
+            pass
         return user

@@ -20,12 +20,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('apps.home.urls')),
-    path('', include('apps.administration.urls')),
+    path("admin/", admin.site.urls),
+    path("", include("apps.home.urls")),
+    path("", include("apps.administration.urls")),
+    path("", include("apps.authentication.urls")),
+    path("", include("apps.banquets.urls")),
+    path("", include("apps.users.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 # create custom urls for 404 and 500 errors
-handler404 = 'apps.shared.views.handler404'
-handler500 = 'apps.shared.views.handler500'
+handler404 = "apps.shared.views.handler404"
+handler500 = "apps.shared.views.handler500"

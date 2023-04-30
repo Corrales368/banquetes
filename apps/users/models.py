@@ -15,6 +15,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     Username and password are required. Other fields are optional.
     """
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=150, blank=True)
@@ -25,9 +26,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     photo = models.ImageField(upload_to="user", blank=True, null=True)
 
     objects = UserManager()
-    
+
     EMAIL_FIELD = "email"
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
     def __str__(self) -> str:
@@ -51,10 +52,21 @@ class User(AbstractBaseUser, PermissionsMixin):
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
-    
+
     @property
     def get_photo_url(self):
         if self.photo:
             return self.photo.url
         else:
             return "static/images/avatar/user_avatar.jpg"
+
+
+class LoginActivity(models.Model):
+    """
+    Model to store login activity of users
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_login = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user}'
